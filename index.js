@@ -21,7 +21,7 @@ async function run() {
         const reviewsCollection = client.db('computerMania').collection('reviews');
 
         app.get('/services', async (req, res) => {
-            const query = {}
+            const query = {};
             const cursor = serviceCollection.find(query);
             const services = await cursor.toArray();
             res.send(services)
@@ -79,6 +79,15 @@ async function run() {
             const result = await reviewsCollection.insertOne(review);
             res.send(result);
         })
+
+        app.get('/reviews', async (req, res) => {
+            const query = {};
+            const cursor = reviewsCollection.find(query);
+            const reviews = await cursor.toArray();
+            res.send(reviews)
+        })
+
+
 
     }
     finally {
